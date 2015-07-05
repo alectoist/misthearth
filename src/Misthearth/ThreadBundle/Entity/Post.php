@@ -4,6 +4,7 @@ namespace Misthearth\ThreadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert; 
+use Misthearth\ThreadBundle\Entity\Timestampable;
 
 /**
  * Post
