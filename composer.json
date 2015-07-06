@@ -21,7 +21,9 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
-        "apoutchika/loremipsum-bundle": "dev-master"
+        "apoutchika/loremipsum-bundle": "dev-master",
+        "braincrafted/bootstrap-bundle": "~2.0",
+        "stof/doctrine-extensions-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

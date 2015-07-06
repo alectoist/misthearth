@@ -4,7 +4,8 @@ namespace Misthearth\ThreadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert; 
-use Misthearth\ThreadBundle\Entity\Timestampable;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * Thread
@@ -42,9 +43,11 @@ class Thread
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="CreationDate", type="time")
+     * @Gedmo\Timestampable (on="create")
+     * @ORM\Column(name="createdAt", type="datetime")
+     * @Assert\NotBlank
      */
-    private $creationDate;
+    private $createdAt;
 
 
     /**
@@ -108,6 +111,7 @@ class Thread
     public function __construct()
     {
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+        
     }
 
     /**

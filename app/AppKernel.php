@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Misthearth\ThreadBundle\ThreadBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Apoutchika\LoremIpsumBundle\ApoutchikaLoremIpsumBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
