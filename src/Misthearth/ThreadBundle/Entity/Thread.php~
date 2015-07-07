@@ -4,6 +4,8 @@ namespace Misthearth\ThreadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert; 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * Thread
@@ -37,13 +39,25 @@ class Thread
      * @ORM\Column(name="Title", type="string", length=255)
      */
     private $title;
+    
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"title"}, unique=false)
+     * @ORM\Column(length=255)
+     */
+
+    private $slug;
+
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="CreationDate", type="time")
+     * @Gedmo\Timestampable (on="create")
+     * @ORM\Column(name="createdAt", type="datetime")
+     * @Assert\NotBlank
      */
-    private $creationDate;
+    private $createdAt;
 
 
     /**
@@ -100,5 +114,46 @@ class Thread
     public function getCreationDate()
     {
         return $this->creationDate;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+        
+    }
+
+    /**
+     * Add posts
+     *
+     * @param \Misthearth\ThreadBundle\Entity\Post $posts
+     * @return Thread
+     */
+    public function addPost(\Misthearth\ThreadBundle\Entity\Post $posts)
+    {
+        $this->posts[] = $posts;
+
+        return $this;
+    }
+
+    /**
+     * Remove posts
+     *
+     * @param \Misthearth\ThreadBundle\Entity\Post $posts
+     */
+    public function removePost(\Misthearth\ThreadBundle\Entity\Post $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }

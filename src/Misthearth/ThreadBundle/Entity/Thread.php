@@ -39,6 +39,16 @@ class Thread
      * @ORM\Column(name="Title", type="string", length=255)
      */
     private $title;
+    
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"title"}, unique=false)
+     * @ORM\Column(length=255)
+     */
+
+    private $slug;
+
 
     /**
      * @var \DateTime
@@ -145,5 +155,51 @@ class Thread
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Thread
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Thread
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }
