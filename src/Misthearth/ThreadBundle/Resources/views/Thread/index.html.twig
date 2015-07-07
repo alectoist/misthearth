@@ -1,5 +1,9 @@
 {% extends 'ThreadBundle::layout.html.twig' %}
 
 {% block body %}
-    {{ name }}
+    
+    {% for thread in threads %}
+        {{ thread.title }}
+    {% endfor %}
+    
 {% endblock %}
