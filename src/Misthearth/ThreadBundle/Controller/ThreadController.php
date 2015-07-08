@@ -10,6 +10,9 @@ class ThreadController extends Controller
 {
     /**
      * @Route("/")
+     * 
+     * @return array
+     * 
      * @Template()
      */
     public function indexAction()
@@ -20,6 +23,33 @@ class ThreadController extends Controller
         
         return array(
             'threads' => $threads,
+        );
+    }
+    
+    /**
+     * 
+     * @Route("/thread/{slug}")
+     * 
+     * @throws NotFoundHttpException
+     * @return array
+     * 
+     * @param type $slug
+     * @Template()
+     */
+    public function showAction($slug)
+    {
+        $thread = $this->getDoctrine()
+                       ->getRepository('ThreadBundle:Thread')
+                       ->findOneBy(array(
+                           'slug' => $slug
+                       ));
+        
+        if (null == $thread) {
+            throw $this->createNotFoundException('Post was not found');            
+        }
+        
+        return array(
+            'thread' => $thread
         );
     }
 }
