@@ -1,1 +1,13 @@
 {% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    
+	{% stylesheets filter='less' output='css/compiled-main.css'
+
+	'@ThreadBundle/Resources/public/less/style.less' 
+
+	%}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+{% endblock %}
